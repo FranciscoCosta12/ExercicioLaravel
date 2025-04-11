@@ -12,7 +12,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+
+        return view('contacts.index', [
+            'contacts' => $contacts
+        ]);
     }
 
     /**
@@ -28,7 +32,15 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $validated = $request->validate([
+        //     'name' => 'required|string|min:6',
+        //     'contact' => 'required|digits:9',
+        //     'email' => 'required|email|unique:contactos,email',
+        // ]);
+    
+        // $contact = Contact::create($validated);
+    
+        // return response()->json($contact, 201);
     }
 
     /**
