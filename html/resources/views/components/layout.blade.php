@@ -20,8 +20,8 @@
                         </div>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
-                                <x-nav-link href="/contact" :active="request()->is('/contact')">Contacts</x-nav-link>
-                                <x-nav-link href="/contact/create" :active="request()->is('/contact/create')">Create Contact</x-nav-link>
+                                <x-nav-link href="/contacts" :active="request()->is('/contact')">Contacts</x-nav-link>
+                                <x-nav-link href="/contacts/create" :active="request()->is('/contact/create')">Create Contact</x-nav-link>
                             </div>
                         </div>
                     </div>

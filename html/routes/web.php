@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/contacts', [ContactController::class, 'index']);
+Route::get('/contacts/{contact}', [ContactController::class, 'show']);
