@@ -24,23 +24,27 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contacts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        // $validated = $request->validate([
-        //     'name' => 'required|string|min:6',
-        //     'contact' => 'required|digits:9',
-        //     'email' => 'required|email|unique:contactos,email',
-        // ]);
+        request()->validate([
+            'name' => ['required', 'min:5'],
+            'contact' => ['required', 'digits:9'],
+            'email' => ['required', 'email', 'unique:contacts,email']
+        ]);
     
-        // $contact = Contact::create($validated);
+        Contact::create([
+            'name' => request('name'),
+            'contact' => request('contact'),
+            'email' => request('email'),
+        ]);
     
-        // return response()->json($contact, 201);
+        return redirect('/contacts');
     }
 
     /**
@@ -56,15 +60,27 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', ['contact' => $contact]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Contact $contact)
     {
-        //
+        request()->validate([
+            'name' => ['required', 'min:5'],
+            'contact' => ['required', 'digits:9', 'unique:contacts,contact'],
+            'email' => ['required', 'email', 'unique:contacts,email']
+        ]);
+    
+        $contact->update([
+            'name' => request('name'),
+            'contact' => request('contact'),
+            'email' => request('email'),
+        ]);
+    
+        return redirect('/contacts/' . $contact->id);
     }
 
     /**
@@ -72,6 +88,8 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return redirect('/contacts');
     }
 }

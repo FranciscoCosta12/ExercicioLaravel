@@ -8,8 +8,9 @@
             <a href="/contacts/{{ $contact['id'] }}" class="block px-4 py-6 border border-gray-200">
                 <div class="font-bold text-blue-500 text-sm">{{ $contact['name'] }}</div>
                 <div>
-                    {{ $contact['contact'] }} 
+                    {{ $contact['contact'] }}
                 </div>
+                <x-button href="/contacts/{{ $contact['id'] }}/edit">Edit Contact - {{ $contact['name'] }}</x-button>
             </a>
         @endforeach
 

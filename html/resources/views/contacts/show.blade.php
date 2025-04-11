@@ -11,4 +11,8 @@
         <strong>Email: </strong> {{ $contact['email'] }}
     </div>
 
+    <p class="mt-6">
+        <x-button href="/contacts/{{ $contact->id }}/edit">Edit Contact</x-button>
+    </p>
+
 </x-layout>
