@@ -10,7 +10,11 @@
                 <div>
                     {{ $contact['contact'] }}
                 </div>
-                <x-button href="/contacts/{{ $contact['id'] }}/edit">Edit Contact - {{ $contact['name'] }}</x-button>
+                @auth
+                @can('edit-contact', $contact)
+                    <x-button href="/contacts/{{ $contact['id'] }}/edit">Edit Contact - {{ $contact['name'] }}</x-button>
+                @endcan
+                @endauth
             </a>
         @endforeach
 

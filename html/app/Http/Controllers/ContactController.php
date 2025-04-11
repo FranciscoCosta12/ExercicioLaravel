@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ContactController extends Controller
 {
@@ -61,6 +63,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
+
         return view('contacts.edit', ['contact' => $contact]);
     }
 

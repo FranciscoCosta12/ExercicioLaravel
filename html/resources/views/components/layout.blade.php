@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en" class="h-full bg-gray-100">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Exercicio Laravel</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,13 +17,32 @@
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <img class="size-8" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                            <img class="size-8"
+                                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                                alt="Your Company">
                         </div>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
-                                <x-nav-link href="/contacts" :active="request()->is('/contact')">Contacts</x-nav-link>
-                                <x-nav-link href="/contacts/create" :active="request()->is('/contact/create')">Create Contact</x-nav-link>
+                                <x-nav-link href="/" :active="request()->is('/')">Contacts</x-nav-link>
+                                <x-nav-link href="/contacts/create" :active="request()->is('contacts/create')">Create Contact</x-nav-link>
                             </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-4 flex items-center md:ml-6">
+                            @guest
+                                <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
+                                <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                            @endguest
+
+                            @auth
+                                <form method="POST" action="/logout">
+                                    @csrf
+
+                                    <x-form-button>Log Out</x-form-button>
+                                </form>
+                            @endauth
+
                         </div>
                     </div>
                 </div>
@@ -33,9 +53,9 @@
                 <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-                       aria-current="page">Home</a>
+                        aria-current="page">Home</a>
                     <a href="/about"
-                       class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About</a>
+                        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About</a>
                 </div>
             </div>
         </nav>
@@ -53,4 +73,5 @@
         </main>
     </div>
 </body>
+
 </html>
