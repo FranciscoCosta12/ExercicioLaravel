@@ -67,7 +67,7 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Contact $contact)
+    public function update(Request $request, Contact $contact)
     {
         request()->validate([
             'name' => ['required', 'min:5'],
