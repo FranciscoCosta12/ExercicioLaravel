@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -70,8 +71,8 @@ class ContactController extends Controller
     {
         request()->validate([
             'name' => ['required', 'min:5'],
-            'contact' => ['required', 'digits:9', 'unique:contacts,contact'],
-            'email' => ['required', 'email', 'unique:contacts,email']
+            'contact' => ['required', 'digits:9', Rule::unique('contacts', 'contact')->ignore($contact->id)],
+            'email' => ['required', 'email', Rule::unique('contacts', 'email')->ignore($contact->id)]
         ]);
     
         $contact->update([
